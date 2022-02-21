@@ -1,3 +1,3 @@
 exports.home = (req, res) => {
-    res.json({ message: 'Oi express' })
+    res.json({ message: 'Bem vindo a API de CRUD'})
 }
