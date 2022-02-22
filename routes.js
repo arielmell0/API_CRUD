@@ -12,4 +12,6 @@ route.get('/pessoa/:id', PessoaController.listaUmaPessoa)
 
 route.post('/pessoa', PessoaController.cadastroPessoa)
 
+route.patch('/pessoa/:id', PessoaController.atualizaDadosPessoa)
+
 module.exports = route

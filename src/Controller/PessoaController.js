@@ -7,6 +7,7 @@ exports.cadastroPessoa = async(req, res) => {
 
     if(!nome) {
         res.status(422).json({ erro: "O nome é obrigatório!" })
+        return
     }
 
     const Pessoa = {
@@ -41,9 +42,34 @@ exports.listaUmaPessoa = async(req, res) => {
 
     try {
         const pessoa = await PessoaModel.findOne({ _id: id })
+
+        if(!pessoa) {
+            res.status(422).json({ message: 'O usuário não foi encontrado' })
+            return
+        }
         
         res.status(200).json(pessoa)
     } catch(error) {
-        res.status(500).json({ erro: error})
+        res.status(500).json({ erro: error })
+    }
+}
+
+// Update - atualização de dados (PUT, PATCH)
+exports.atualizaDadosPessoa = async(req, res) => {
+    const id = req.params.id
+    const { nome, salario, aprovado } = req.body
+
+    const pessoa = {
+        nome,
+        salario,
+        aprovado
+    }
+
+    try {
+        const updatePessoa = await PessoaModel.updateOne({ _id: id }, pessoa)
+
+        res.status(200).json({ message: 'Usuário alterado com sucesso.' })
+    } catch(error) {
+        res.status(500).json({ erro: error })
     }
 }
