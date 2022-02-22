@@ -68,6 +68,11 @@ exports.atualizaDadosPessoa = async(req, res) => {
     try {
         const updatePessoa = await PessoaModel.updateOne({ _id: id }, pessoa)
 
+        if(updatePessoa.matchedCount === 0) {
+            res.status(422).json({ message: 'O usuário não foi encontrado!' })
+            return
+        }
+
         res.status(200).json({ message: 'Usuário alterado com sucesso.' })
     } catch(error) {
         res.status(500).json({ erro: error })
