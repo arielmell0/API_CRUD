@@ -78,3 +78,22 @@ exports.atualizaDadosPessoa = async(req, res) => {
         res.status(500).json({ erro: error })
     }
 }
+
+exports.deletaPessoa = async(req, res) => {
+    const id = req.params.id
+
+    const pessoa = await PessoaModel.findOne({ _id: id })
+
+    if(!pessoa) {
+        res.status(422).json({ message: 'O usuário não foi encontrado!' })
+        return
+    }
+    
+    try {
+        await PessoaModel.deleteOne({ _id: id })
+
+        res.status(200).json( { message: 'Usuário removido com sucesso!'} )
+    } catch (error) {
+        res.status(500).json({ erro: error })
+    }
+}
