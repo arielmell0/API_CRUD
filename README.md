@@ -4,7 +4,7 @@ Uma API que possui as funcionalidades de um CRUD (Create, Read, Update and Delet
 
 ## 🎨 Layout
 
-### Web
+### Insomnia
 
 Testando nossa API com o [Insomnia](https://insomnia.rest/)
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
