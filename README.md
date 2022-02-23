@@ -41,7 +41,7 @@ E por último deletando os dados da nossa API com o verbo DELETE
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Back-end**  ([NodeJS](https://nodejs.org/)  +  [MongoDB](https://www.mongodb.com/))
+#### **Back-end**  ([NodeJS](https://nodejs.org/)  +  [Express](https://expressjs.com) + [MongoDB](https://www.mongodb.com/))
 
 > Veja o arquivo  [package.json](https://github.com/arielmell0/API_CRUD/blob/main/package.json)
 
