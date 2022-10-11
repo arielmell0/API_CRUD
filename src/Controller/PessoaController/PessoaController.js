@@ -1,5 +1,5 @@
-const Pessoa = require('../Models/PessoaModel')
-const PessoaModel = require('../Models/PessoaModel')
+const Pessoa = require('../../Models/PessoaModel')
+const PessoaModel = require('../../Models/PessoaModel')
 
 // Create
 exports.cadastroPessoa = async(req, res) => {
