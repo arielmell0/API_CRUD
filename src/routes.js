@@ -1,8 +1,8 @@
 const express = require('express')
 const route = express.Router()
 
-const HomeController = require('./src/Controller/HomeController')
-const PessoaController = require('./src/Controller/PessoaController')
+const HomeController = require('./Controller/HomeController')
+const PessoaController = require('./Controller/PessoaController')
 
 // Rota inicial (boas vindas)
 route.get('/', HomeController.home)
