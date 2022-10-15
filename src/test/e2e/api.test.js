@@ -25,15 +25,20 @@ describe('API E2E Test Suite', () => {
     })
 
     test('GET /pessoa/id - should return a object with a unique person and status 200', async () => {
-        const personId = '6345b24ed4e74c38e2303edc'
+        // get the first person id in the db
+        const responseGet = await superTest(Server)
+        .get('/pessoa')
+        const dataGet = JSON.parse(responseGet.text)
+        const personId = dataGet[0]._id
 
+        // return the first person id
         const response = await superTest(Server)
         .get(`/pessoa/${personId}`)
 
         const data = JSON.parse(response.text)
 
         expect(data).toBeInstanceOf(Object)
-        expect(data._id).toBe('6345b24ed4e74c38e2303edc')
+        expect(data._id).toBe(personId)
         expect(response.status).toBe(200)
     })
 
@@ -53,7 +58,13 @@ describe('API E2E Test Suite', () => {
     })
 
     test('PATCH /pessoa/:id - should acess a pessoa id, edit the data and return status 200', async () => {
-        const personId = '634875eb61440a74d33717b0'
+        // get the first person id in the db
+        const responseGet = await superTest(Server)
+        .get('/pessoa')
+        const dataGet = JSON.parse(responseGet.text)
+        const personId = dataGet[0]._id
+
+        // edit the data in the determined id
         const response = await superTest(Server) 
         .patch(`/pessoa/${personId}`)
         .send({
@@ -66,5 +77,22 @@ describe('API E2E Test Suite', () => {
 
         expect(response.status).toBe(200)
         expect(data).toBe('{"message":"Usuário alterado com sucesso."}')
+    })
+
+    test('DELETE /pessoa/:id - should acesss the route with the id and return 200', async() => {
+        // get the first person id in the db
+        const responseGet = await superTest(Server)
+        .get('/pessoa')
+        const dataGet = JSON.parse(responseGet.text)
+        const personId = dataGet[0]._id
+
+        // delete the first id in the db
+        const responseDelete = await superTest(Server)
+        .delete(`/pessoa/${personId}`)
+
+        const dataDelete = responseDelete.text
+
+        expect(responseDelete.status).toBe(200)
+        expect(dataDelete).toBe('{"message":"Usuário removido com sucesso!"}')
     })
 })
