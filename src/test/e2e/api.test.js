@@ -51,4 +51,20 @@ describe('API E2E Test Suite', () => {
         expect(response.status).toBe(201)
         expect(data).toBe('{"message":"Pessoa inserida no sistema com sucesso!"}')
     })
+
+    test('PATCH /pessoa/:id - should acess a pessoa id, edit the data and return status 200', async () => {
+        const personId = '634875eb61440a74d33717b0'
+        const response = await superTest(Server) 
+        .patch(`/pessoa/${personId}`)
+        .send({
+            nome: 'Bora bill',
+            salario: 50000,
+            aprovado: true
+        })
+
+        const data = response.text
+
+        expect(response.status).toBe(200)
+        expect(data).toBe('{"message":"Usuário alterado com sucesso."}')
+    })
 })
